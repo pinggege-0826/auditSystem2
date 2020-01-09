@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="561f211f-ac6b-4e20-a3a4-11345069227d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/ExcelInsert/ExcelImport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/RabbitMQMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/config/MQConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/get/GetMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/send/SendDirectQueueControoler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/service/IUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/websocket/WebSocketServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/resources/page/websocket.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/resources/templates/message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audit/src/main/resources/templates/show.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1W95I5KER4TV0MZc2sOHbE0h6s7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8 (2)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.lovo.audit.config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspaceIdea\auditSystem\audit\src\main\resources" />
+      <recent name="D:\workspaceIdea\auditSystem\audit\src\main\java\com\lovo\audit" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="RabbitMQMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="audit" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lovo.audit.RabbitMQMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="561f211f-ac6b-4e20-a3a4-11345069227d" name="Default Changelist" comment="" />
+      <created>1578548886782</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578548886782</updated>
+      <workItem from="1578548891322" duration="4475000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1578554473991">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1578554473991" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1578554462584">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1578554462584" />
+    <state x="57" y="59" key="new project wizard" timestamp="1578548977331">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="57" y="59" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1578548977331" />
+  </component>
+</project>
