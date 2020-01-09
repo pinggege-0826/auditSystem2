@@ -11,6 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
      * @param registry
      */
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/page/**").addResourceLocations("classpath:/page/");
+        registry.addResourceHandler("/page2/**").addResourceLocations("classpath:/page/");
     }
 }
