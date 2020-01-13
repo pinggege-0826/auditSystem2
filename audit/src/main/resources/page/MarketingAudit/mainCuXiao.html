@@ -8,9 +8,10 @@
 		<title>促销审核</title>
 		<link rel="stylesheet" type="text/css" href="../../static/layui/css/layui.css" />
 		<link rel="stylesheet" type="text/css" href="../../static/css/admin.css" />
+		<script src="../../vue/jquery-2.1.4.js"></script>
 	</head>
-	<body>
-		<div class="page-content-wrap">
+	<body style="height:100%;">
+		<div id="div" class="page-content-wrap">
 					<div class="layui-form" id="table-list">
 						<table class="layui-table" lay-skin="line">
 							<colgroup>
@@ -38,16 +39,16 @@
 									<td class="hidden-xs">香蕉</td>
 									<td class="hidden-xs">10000</td>
 									<td>水果</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" value="未通过">未通过</button></td>
+									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)"  value="未通过">未通过</button></td>
 									<td>
 										<div class="layui-inline">
-											<button class="layui-btn layui-btn-mini layui-btn-danger del-btn" data-id="1" data-url="menu-add.html"><i class="layui-icon">&#xe640;</i></button>
+											<button class="layui-btn layui-btn-mini layui-btn-danger del-btn" data-id="1" onclick="del()"><i class="layui-icon">&#xe640;</i></button>
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-						<div id="fenYe"></div>
+						<div id="fenYe" style="text-align: center;"></div>
 					</div>
 		</div>
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -71,17 +72,56 @@
 				});
 				var nums = 5; //每页出现的数据量
 			});
-			/*按钮显示的值不同,跳不同的页面*/
-			function find(btn) {
+			/*弹出页面，小窗口 不要管*/
+			function find(btn){
+				var a="";
 				if(btn =='已通过'){
-					location.href="afternoon.html";
+					a="afternoon.html";
 				}else if(btn =='未通过' ){
-					location.href="unfinished.html";
+					a="unfinished.html";
 				}else if(btn=='已审核'){
-					location.href="afternoon.html";
+					a="afternoon.html";
+				}
+				var index =layer.open({
+					type: 2,
+					skin: 'a', //样式类名
+					title: '<div class="layui-layer-title" style="cursor: move;">促销详情</div>',
+					//closeBtn: 1, //不显示关闭按钮
+					//anim: 2,
+					area: setpage(),
+					//shadeClose: false, //开启遮罩关闭
+					//页面最大最小化，true可以最大最小化，false没有最大最小化
+					maxmin: true,
+					offset: ['2px','15px'],
+					/*要跳的页面*/
+					content: a
+				});
+				layer.full(index);
+			}
+			//定义弹出的窗口根据不同屏幕分辨率来改变大小
+			function setpage() {
+				if ($(window).width() < 458) {
+					return ['100%', '100%'];
+				} else {
+					return ['70%', '70%'];
 				}
 			}
+			//点击删除一条记录
+			function del() {
+				layer.confirm('您确定删除吗？', {
+					btn: ['是','否'] //按钮
+				}, function(){
+					layer.msg('删除成功', {
+						time: 1000, //0.5s后自动关闭
+						icon: 1});
+					//在这里写方法
 
+				}, function(){
+					layer.msg('取消删除', {
+						time: 1000 //0.5s后自动关闭
+					});
+				});
+			}
 		</script>
 	</body>
 </html>

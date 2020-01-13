@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<style>
 			#weizhi{
 				position: relative;
-				left: 131px;
-				bottom: 54px;
-				width: 70px;
-			}
-			#fanhui{
-				position: relative;
-				left: 184px;
-				bottom: 54px;
+				left: -2px;
+				bottom: 1px;
 				width: 70px;
 			}
 		</style>
@@ -24,8 +19,9 @@
 		<link rel="stylesheet" type="text/css" href="../../static/css/admin.css" />
 	</head>
 	<body>
-		<div class="wrap-container">
 
+		<div class="wrap-container">
+			<form class="layui-form" style="width: 90%;padding-top: 20px;">
 					<div class="layui-form-item">
 						<label class="layui-form-label">商品编号：</label>
 						<div class="layui-input-block">
@@ -65,20 +61,14 @@
 							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="0.25" autocomplete="off" class="layui-input">
 						</div>
 					</div>
-					<div class="layui-form-item">
-						<div class="layui-input-block">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">通过</button>
-							<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
-						</div>
-					</div>
-
-			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
+				</form>
+			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">返回</button>
 		</div>
 
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			function f() {
-				location.href="feedback.html";
+				location.href="mainYuCunK.html";
 			}
 		</script>
 	</body>
