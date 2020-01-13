@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="561f211f-ac6b-4e20-a3a4-11345069227d" name="Default Changelist" comment="审核系统2">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/entity/hjp/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/audit/src/main/java/com/lovo/audit/entity/hjp/UserEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +19,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PATH_TO_GIT" value="F:\JAVA\git\cmd\git.exe" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IgnoredFileRootStore">
@@ -53,7 +56,10 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -106,6 +112,7 @@
       <workItem from="1578558168544" duration="1947000" />
       <workItem from="1578634138883" duration="6335000" />
       <workItem from="1578879145827" duration="2544000" />
+      <workItem from="1578883579105" duration="190000" />
     </task>
     <task id="LOCAL-00001" summary="审核系统1">
       <created>1578554560319</created>
@@ -140,10 +147,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="审核系统2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1578881831634">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="614" y="307" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1578883658470">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="614" y="307" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.834@0.0.1536.834" timestamp="1578883658470" />
+    <state x="318" y="0" key="CommitChangelistDialog2" timestamp="1578883850820">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="283" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578881831634" />
+    <state x="318" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578883850820" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1578554473991">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -152,14 +164,19 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="546" y="255" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1578554592819" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1578880776924">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="207" y="7" key="SettingsEditor" timestamp="1578883878718">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1578880776924" />
+    <state x="207" y="7" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1578883878718" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1578881746672">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1578881746672" />
+    <state x="449" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1578883589820">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="449" y="242" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1578883589820" />
     <state x="57" y="59" key="new project wizard" timestamp="1578548977331">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
