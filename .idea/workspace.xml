@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="561f211f-ac6b-4e20-a3a4-11345069227d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/audit/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/audit/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="561f211f-ac6b-4e20-a3a4-11345069227d" name="Default Changelist" comment="审核系统2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +153,7 @@
       <workItem from="1578558168544" duration="1947000" />
       <workItem from="1578634138883" duration="6335000" />
       <workItem from="1578879145827" duration="2544000" />
-      <workItem from="1578883579105" duration="4292000" />
+      <workItem from="1578883579105" duration="4848000" />
     </task>
     <task id="LOCAL-00001" summary="审核系统1">
       <created>1578554560319</created>
@@ -190,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578892791908</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="审核系统2">
+      <created>1578892894204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1578892894204</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,11 +221,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="614" y="307" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.834@0.0.1536.834" timestamp="1578883658470" />
-    <state x="318" y="0" key="CommitChangelistDialog2" timestamp="1578892858088">
+    <state x="318" y="0" key="CommitChangelistDialog2" timestamp="1578892890303">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="283" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578881831634" />
-    <state x="318" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578892858088" />
+    <state x="318" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1578892890303" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1578554473991">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
