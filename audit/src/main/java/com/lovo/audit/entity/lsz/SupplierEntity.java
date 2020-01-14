@@ -38,8 +38,8 @@ public class SupplierEntity {
     /**退货时间*/
     private String backTime;
     @Column(name = "s_tag")
-    /**退货状态*/
-    private int tag;
+    /**退货状态,0为退货中，1为已退货*/
+    private String tag;
 
     public int getReturnId() {
         return returnId;
@@ -113,11 +113,11 @@ public class SupplierEntity {
         this.backTime = backTime;
     }
 
-    public int getTag() {
+    public String getTag() {
         return tag;
     }
 
-    public void setTag(int tag) {
+    public void setTag(String tag) {
         this.tag = tag;
     }
 }
