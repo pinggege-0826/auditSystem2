@@ -1,6 +1,9 @@
 package com.lovo.audit.entity.lxj;
 
+import com.lovo.audit.entity.cpy.CompanyEntity;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * 竞标单（接收）
@@ -46,12 +49,77 @@ public class BidEntity {
     /**
      * 商品对象
      */
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "productFid")
     private ProductEntity product;
 
     /**
-     * 供货商对象
+     * 供货商集合
      */
+    @OneToMany(mappedBy = "product")
+    private List<CompanyEntity> companyEntityList;
 
+    public int getBidId() {
+        return bidId;
+    }
+
+    public void setBidId(int bidId) {
+        this.bidId = bidId;
+    }
+
+    public String getBidCode() {
+        return bidCode;
+    }
+
+    public void setBidCode(String bidCode) {
+        this.bidCode = bidCode;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getProvideNub() {
+        return provideNub;
+    }
+
+    public void setProvideNub(int provideNub) {
+        this.provideNub = provideNub;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
+    public List<CompanyEntity> getCompanyEntityList() {
+        return companyEntityList;
+    }
+
+    public void setCompanyEntityList(List<CompanyEntity> companyEntityList) {
+        this.companyEntityList = companyEntityList;
+    }
 }

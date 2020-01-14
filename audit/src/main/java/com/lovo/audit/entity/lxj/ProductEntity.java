@@ -1,5 +1,7 @@
 package com.lovo.audit.entity.lxj;
 
+import com.lovo.audit.entity.cpy.CompanyEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -54,10 +56,13 @@ public class ProductEntity implements Serializable {
     private BuyOrderEntity buyOrder;
 
     /**
-     * 竞标单集合
+     * 竞标单对象
      */
-    @OneToMany(mappedBy = "product")
-    private List<BidEntity> bidEntityList;
+    @OneToOne
+    @JoinColumn(name = "bidFid")
+    private BidEntity bid;
+
+
 
     public ProductEntity() {
     }
@@ -116,5 +121,13 @@ public class ProductEntity implements Serializable {
 
     public void setBuyOrder(BuyOrderEntity buyOrder) {
         this.buyOrder = buyOrder;
+    }
+
+    public BidEntity getBid() {
+        return bid;
+    }
+
+    public void setBid(BidEntity bid) {
+        this.bid = bid;
     }
 }
