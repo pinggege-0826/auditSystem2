@@ -3,6 +3,9 @@ package com.lovo.audit.entity.hjp;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * 用户订单实体类
+ */
 @Entity
 @Table(name = "sys_userOrder")
 public class UserOrderEntity {
@@ -15,7 +18,7 @@ public class UserOrderEntity {
     private String userId;
 
     /**订单编号*/
-    @Column(name = "uo_orderNumx")
+    @Column(name = "uo_orderNum",length = 80)
     private String orderCode;
 
     /**下单时间*/
@@ -23,7 +26,7 @@ public class UserOrderEntity {
     private String orderTime;
 
     /**购买资金来源*/
-    @Column(name = "uo_moneySource")
+    @Column(name = "uo_moneySource",length = 24)
     private String moneySource;
 
     /**总金额*/

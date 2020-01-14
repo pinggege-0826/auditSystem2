@@ -3,6 +3,9 @@ package com.lovo.audit.entity.hjp;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * 商品规格实体类
+ */
 @Entity
 @Table(name = "sys_goodsSize")
 public class GoodsSizeEntity {
@@ -12,7 +15,7 @@ public class GoodsSizeEntity {
     private int id;
 
     /**商品规格*/
-    @Column(name = "gs_size")
+    @Column(name = "gs_size",length = 255)
     private String  size;
 
     /**供货商品与规格中间表集合*/

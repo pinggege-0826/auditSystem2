@@ -2,6 +2,9 @@ package com.lovo.audit.entity;
 
 import javax.persistence.*;
 
+/**
+ * 公司账户实体类
+ */
 @Entity
 @Table(name = "sys_companyAccount")
 public class CompanyAccountEntity {

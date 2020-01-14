@@ -3,6 +3,9 @@ package com.lovo.audit.entity.hjp;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * 供货订单实体类
+ */
 @Entity
 @Table(name = "sys_supplyOrder")
 public class SupplyOrderEntity {
@@ -12,11 +15,11 @@ public class SupplyOrderEntity {
     private int id;
 
     /**供应商名*/
-    @Column(name = "s_supplierName")
+    @Column(name = "s_supplierName",length = 48)
     private String supplierName;
 
     /**供货订单编号*/
-    @Column(name = "s_orderNum")
+    @Column(name = "s_orderNum",length = 80)
     private String orderNum;
 
     /**总金额*/
