@@ -1,8 +1,10 @@
 package com.lovo.audit.service.lh.impl;
+import	java.awt.Desktop.Action;
 
 import com.lovo.audit.dao.lh.IMarketingDao;
 import com.lovo.audit.entity.lh.MarketingEntity;
 import com.lovo.audit.service.lh.IMarketingService;
+import com.lovo.audit.service.lh.ISpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +21,6 @@ import java.util.List;
 public class MarketingServiceImpl implements IMarketingService {
     @Autowired
     private IMarketingDao marketingDao;
-
     @Override
     public List<MarketingEntity> findAllBy(int currPage, int pageSize) {
         currPage -=1;
@@ -30,6 +31,7 @@ public class MarketingServiceImpl implements IMarketingService {
     @Override
     public void saveMarket(MarketingEntity marketingEntity) {
         marketingDao.save(marketingEntity);
+
     }
 
     @Override

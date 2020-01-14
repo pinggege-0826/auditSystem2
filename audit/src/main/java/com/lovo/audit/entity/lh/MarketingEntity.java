@@ -1,6 +1,9 @@
 package com.lovo.audit.entity.lh;
 
+import com.lovo.audit.entity.lxj.SpecificationEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "sys_marketing")
-public class MarketingEntity {
+public class MarketingEntity implements Serializable {
     /**
      * 商品ID
      */
@@ -33,7 +36,7 @@ public class MarketingEntity {
     /**
      * 商品规格集合
      */
-    @OneToMany(mappedBy = "productCode")
+    @OneToMany(mappedBy = "marketing")
     private List<SpecificationEntity> productNorms_list;
     /**
      * 商品类型
