@@ -39,7 +39,7 @@
 									<td class="hidden-xs">香蕉</td>
 									<td class="hidden-xs">10000</td>
 									<td>水果</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" value="未通过">未通过</button></td>
+									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" value="冻结">冻结</button></td>
 									<td>
 										<div class="layui-inline">
 											<button class="layui-btn layui-btn-mini layui-btn-danger del-btn" data-id="1" onclick="del()"><i class="layui-icon">&#xe640;</i></button>
@@ -81,6 +81,8 @@
 					a="unfinished.html";
 				}else if(btn=='已审核'){
 					a="afternoon.html";
+				}else if(btn=='冻结'){
+					a="dongJie.html";
 				}
 				var index =layer.open({
 					type: 2,
