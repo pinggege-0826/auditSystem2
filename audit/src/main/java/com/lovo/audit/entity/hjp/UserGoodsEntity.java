@@ -1,6 +1,7 @@
 package com.lovo.audit.entity.hjp;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "sys_userGoods")
@@ -23,6 +24,10 @@ public class UserGoodsEntity {
     @Column(name = "g_goodsName")
     private String goodsName;
 
+    /**商品规格与用户订单商品中间表集合*/
+    @OneToMany(mappedBy = "userGoodsEntity")
+    private List<SizeToUserGoods> toUserGoodsList;
+
     /**商品单价*/
     @Column(name = "g_price")
     private double price;
@@ -36,6 +41,21 @@ public class UserGoodsEntity {
     @JoinColumn(name = "uo_orderId")
     private UserOrderEntity userOrderEntity;
 
+    public TypeForGoodsEntity getTypeForGoodsEntity() {
+        return typeForGoodsEntity;
+    }
+
+    public void setTypeForGoodsEntity(TypeForGoodsEntity typeForGoodsEntity) {
+        this.typeForGoodsEntity = typeForGoodsEntity;
+    }
+
+    public List<SizeToUserGoods> getToUserGoodsList() {
+        return toUserGoodsList;
+    }
+
+    public void setToUserGoodsList(List<SizeToUserGoods> toUserGoodsList) {
+        this.toUserGoodsList = toUserGoodsList;
+    }
 
     public int getId() {
         return id;
