@@ -31,13 +31,76 @@ public class UserOrderEntity {
     private double allMoney;
 
     /**结算状态*/
-    @Column(name = "u_tag")
+    @Column(name = "uo_tag")
     private int tag;
 
     /**商品集合*/
     @OneToMany(mappedBy = "userOrderEntity")
     private List<UserGoodsEntity> goodsList;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public String getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public String getMoneySource() {
+        return moneySource;
+    }
+
+    public void setMoneySource(String moneySource) {
+        this.moneySource = moneySource;
+    }
+
+    public double getAllMoney() {
+        return allMoney;
+    }
+
+    public void setAllMoney(double allMoney) {
+        this.allMoney = allMoney;
+    }
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
+
+    public List<UserGoodsEntity> getGoodsList() {
+        return goodsList;
+    }
+
+    public void setGoodsList(List<UserGoodsEntity> goodsList) {
+        this.goodsList = goodsList;
+    }
 }
 
 
