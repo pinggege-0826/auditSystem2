@@ -10,8 +10,11 @@ public class WebConfig implements WebMvcConfigurer {
      * 放行的静态资源
      * @param registry
      */
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/page2/**").addResourceLocations("classpath:/page/");
+        registry.addResourceHandler("/page/**").addResourceLocations("classpath:/page/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/vue/**").addResourceLocations("classpath:/vue/");
     }
 
 }
