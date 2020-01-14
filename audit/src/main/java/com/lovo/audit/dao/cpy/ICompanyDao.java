@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.awt.print.Pageable;
 import java.util.List;
 
-public interface CompanyDao extends CrudRepository<CompanyEntity,Integer> {
+public interface ICompanyDao extends CrudRepository<CompanyEntity,Integer> {
     /**
      * 查询所有供应商
      * @return 供应商集合
