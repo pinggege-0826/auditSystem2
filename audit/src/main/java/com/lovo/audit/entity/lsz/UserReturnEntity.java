@@ -31,12 +31,12 @@ public class UserReturnEntity {
     @Column(columnDefinition = "TIMESTAMP",name = "u_refundTime",length = 48)
     /**退款时间*/
     private String refundTime;
-    @Column(name = "u_tag")
-    /**退货状态*/
-    private int tag;
+    @Column(name = "u_tag",length = 16)
+    /**退货状态0为退货中，1为已退货*/
+    private String tag;
     /**商品集合*/
     @OneToMany(mappedBy = "userReturn")
-    private Set<SupplierEntity> supplierSet;
+    private Set<GoodsEntity> goodsSet;
 
     public int getSupplierId() {
         return supplierId;
@@ -94,19 +94,19 @@ public class UserReturnEntity {
         this.refundTime = refundTime;
     }
 
-    public int getTag() {
+    public String getTag() {
         return tag;
     }
 
-    public void setTag(int tag) {
+    public void setTag(String tag) {
         this.tag = tag;
     }
 
-    public Set<SupplierEntity> getSupplierSet() {
-        return supplierSet;
+    public Set<GoodsEntity> getGoodsSet() {
+        return goodsSet;
     }
 
-    public void setSupplierSet(Set<SupplierEntity> supplierSet) {
-        this.supplierSet = supplierSet;
+    public void setGoodsSet(Set<GoodsEntity> goodsSet) {
+        this.goodsSet = goodsSet;
     }
 }
