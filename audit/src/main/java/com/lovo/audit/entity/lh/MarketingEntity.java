@@ -1,6 +1,7 @@
 package com.lovo.audit.entity.lh;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * 促销审核实体类
@@ -13,6 +14,7 @@ public class MarketingEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 32)
     private long productId;
     /**
      * 商品编号
@@ -29,10 +31,10 @@ public class MarketingEntity {
      */
     private double productPrice;
     /**
-     * 商品规格
+     * 商品规格集合
      */
-    @Column(length = 80)
-    private String productNorms;
+    @OneToMany(mappedBy = "productCode")
+    private List<SpecificationEntity> productNorms_list;
     /**
      * 商品类型
      */
@@ -43,9 +45,17 @@ public class MarketingEntity {
      */
     private double discount;
     /**
-     * 促销方案状态，0：未通过  1：已通过  2：已审核
+     * 促销方案状态，0：未通过  1：已通过  2：已审核  3：以删除
      */
-    private int status;
+    private int status=0;
+
+    public List<SpecificationEntity> getProductNorms_list() {
+        return productNorms_list;
+    }
+
+    public void setProductNorms_list(List<SpecificationEntity> productNorms_list) {
+        this.productNorms_list = productNorms_list;
+    }
 
     public long getProductId() {
         return productId;
@@ -77,14 +87,6 @@ public class MarketingEntity {
 
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
-    }
-
-    public String getProductNorms() {
-        return productNorms;
-    }
-
-    public void setProductNorms(String productNorms) {
-        this.productNorms = productNorms;
     }
 
     public String getProductType() {
