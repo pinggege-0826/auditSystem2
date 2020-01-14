@@ -3,6 +3,9 @@ package com.lovo.audit.entity.hjp;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * 用户商品实体类
+ */
 @Entity
 @Table(name = "sys_userGoods")
 public class UserGoodsEntity {
@@ -17,11 +20,11 @@ public class UserGoodsEntity {
     private TypeForGoodsEntity typeForGoodsEntity;
 
     /**商品编号*/
-    @Column(name = "g_goodsCode")
+    @Column(name = "g_goodsCode",length = 80)
     private String goodsCode;
 
     /**商品名*/
-    @Column(name = "g_goodsName")
+    @Column(name = "g_goodsName",length = 48)
     private String goodsName;
 
     /**商品规格与用户订单商品中间表集合*/

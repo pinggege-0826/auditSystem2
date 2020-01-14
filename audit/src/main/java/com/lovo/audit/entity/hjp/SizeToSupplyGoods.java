@@ -2,6 +2,9 @@ package com.lovo.audit.entity.hjp;
 
 import javax.persistence.*;
 
+/**
+ * 规格供货商品中间实体类
+ */
 @Entity
 @Table(name = "sys_size_supplyGoods")
 public class SizeToSupplyGoods {
