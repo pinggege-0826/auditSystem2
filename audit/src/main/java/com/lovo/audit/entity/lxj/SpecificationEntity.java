@@ -1,5 +1,7 @@
 package com.lovo.audit.entity.lxj;
 
+import com.lovo.audit.entity.lh.MarketingEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -40,6 +42,21 @@ public class SpecificationEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "productFid")
     private ProductEntity product;
+
+    /**
+     * 促销审核对象
+     */
+    @ManyToOne
+    @JoinColumn(name = "marketingFid")
+    private MarketingEntity marketing;
+
+    public MarketingEntity getMarketing() {
+        return marketing;
+    }
+
+    public void setMarketing(MarketingEntity marketing) {
+        this.marketing = marketing;
+    }
 
     public SpecificationEntity() {
     }
@@ -83,4 +100,5 @@ public class SpecificationEntity implements Serializable {
     public void setProduct(ProductEntity product) {
         this.product = product;
     }
+
 }
