@@ -2,6 +2,8 @@ package com.lovo.audit.entity.cpy;
 /**
  * 供应商实体类
  * */
+import com.lovo.audit.entity.lxj.BidEntity;
+
 import javax.persistence.*;
 
 @Entity
@@ -29,6 +31,17 @@ public class CompanyEntity {
     private String companyLevel;/**公司等级*/
     @Column(name = "c_status",length = 12)
     private String companyStatus;/**公司状态（0为未审核，1为正常，2为冻结）*/
+    @ManyToOne
+    @JoinColumn(name = "fk_id")
+    private BidEntity product;
+
+    public BidEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(BidEntity product) {
+        this.product = product;
+    }
 
     public int getId() {
         return id;
