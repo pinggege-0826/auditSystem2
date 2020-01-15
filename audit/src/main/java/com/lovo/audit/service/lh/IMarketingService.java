@@ -36,4 +36,10 @@ public interface IMarketingService {
      * @param status   方案状态  0：未通过  1：已通过  2：已审核  3：以删除
      */
     public void getIdUpStatus(long id,int status);
+
+    /**
+     * 统计总页数
+     * @return  总页数
+     */
+    public int  countAllBy();
 }
