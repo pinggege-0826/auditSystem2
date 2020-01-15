@@ -52,7 +52,7 @@ public class ProductEntity implements Serializable {
      * 采购单对象
      */
     @ManyToOne
-    @JoinColumn(name = "productFid")
+    @JoinColumn(name = "buyOrderFid")
     private BuyOrderEntity buyOrder;
 
     /**

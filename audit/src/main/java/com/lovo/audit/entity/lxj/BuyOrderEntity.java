@@ -31,6 +31,9 @@ public class BuyOrderEntity  implements Serializable {
 
     /**
      * 状态
+     *      0-初始化状态
+     *      1-订购中状态
+     *      2-审核未通过状态
      */
     private int buyStatus;
 

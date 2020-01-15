@@ -43,6 +43,9 @@ public class BidEntity {
 
     /**
      * 竞标单状态
+     *      0-未处理状态
+     *      1-选择竞标单
+     *      2-放弃竞标单
      */
     private int orderStatus;
 
