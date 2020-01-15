@@ -21,6 +21,7 @@ import java.util.List;
 public class MarketingServiceImpl implements IMarketingService {
     @Autowired
     private IMarketingDao marketingDao;
+
     @Override
     public List<MarketingEntity> findAllBy(int currPage, int pageSize) {
         currPage -=1;
@@ -42,5 +43,10 @@ public class MarketingServiceImpl implements IMarketingService {
     @Override
     public void getIdUpStatus(long id, int status) {
         marketingDao.getIdUpStatus(id,status);
+    }
+
+    @Override
+    public int countAllBy() {
+        return marketingDao.countAllBy();
     }
 }

@@ -35,4 +35,11 @@ public interface IMarketingDao extends CrudRepository<MarketingEntity,Long> {
     @Query("update MarketingEntity set status=?2 where productId=?1")
     @Modifying
     public void getIdUpStatus(long id,int status);
+
+
+    /**
+     * 统计总页数
+     * @return  总页数
+     */
+    public int countAllBy();
 }
