@@ -45,6 +45,14 @@ public class SupplyGoodsEntity {
     @JoinColumn(name = "sg_soid")
     private SupplyOrderEntity supplyOrderEntity;
 
+    public SupplyOrderEntity getSupplyOrderEntity() {
+        return supplyOrderEntity;
+    }
+
+    public void setSupplyOrderEntity(SupplyOrderEntity supplyOrderEntity) {
+        this.supplyOrderEntity = supplyOrderEntity;
+    }
+
     public int getId() {
         return id;
     }
