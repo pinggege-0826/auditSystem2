@@ -1,5 +1,7 @@
 package com.lovo.audit.entity.hjp;
 
+import com.lovo.audit.entity.lxj.BuyOrderEntity;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,11 +29,38 @@ public class SupplyOrderEntity {
     private double allMoney;
 
     /**采购单对象*/
-
+    @ManyToOne
+    @JoinColumn(name = "buyId")
+    private BuyOrderEntity buyOrderEntity;
 
     /**供货商品集合*/
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "supplyOrderEntity")
     private List<SupplyGoodsEntity > goodsList;
+
+    /**
+     * 订单状态
+     * 0-未结算
+     * 1-已结算
+     * 2-已通知供应商订单已结算
+     */
+    @Column(name = "s_tag")
+    private int tag = 0;
+
+    public BuyOrderEntity getBuyOrderEntity() {
+        return buyOrderEntity;
+    }
+
+    public void setBuyOrderEntity(BuyOrderEntity buyOrderEntity) {
+        this.buyOrderEntity = buyOrderEntity;
+    }
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
 
     public int getId() {
         return id;

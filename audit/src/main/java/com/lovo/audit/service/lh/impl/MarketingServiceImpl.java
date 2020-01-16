@@ -49,4 +49,5 @@ public class MarketingServiceImpl implements IMarketingService {
     public int countAllBy() {
         return marketingDao.countAllBy();
     }
+
 }

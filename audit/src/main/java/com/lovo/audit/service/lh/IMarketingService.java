@@ -39,7 +39,9 @@ public interface IMarketingService {
 
     /**
      * 统计总页数
+     *
      * @return  总页数
+     *
      */
-    public int  countAllBy();
+    public int countAllBy();
 }

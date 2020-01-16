@@ -33,9 +33,13 @@ public class UserOrderEntity {
     @Column(name = "uo_allMoney")
     private double allMoney;
 
-    /**结算状态*/
+    /**
+     * 结算状态
+     * 0-未结算
+     * 1-已结算
+     */
     @Column(name = "uo_tag")
-    private int tag;
+    private int tag = 0;
 
     /**商品集合*/
     @OneToMany(mappedBy = "userOrderEntity")

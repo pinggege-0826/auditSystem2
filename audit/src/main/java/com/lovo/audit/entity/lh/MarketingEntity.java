@@ -1,5 +1,6 @@
 package com.lovo.audit.entity.lh;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lovo.audit.entity.lxj.SpecificationEntity;
 
 import javax.persistence.*;
@@ -37,6 +38,7 @@ public class MarketingEntity implements Serializable {
      * 商品规格集合
      */
     @OneToMany(mappedBy = "marketing")
+    @JsonIgnore
     private List<SpecificationEntity> productNorms_list;
     /**
      * 商品类型
