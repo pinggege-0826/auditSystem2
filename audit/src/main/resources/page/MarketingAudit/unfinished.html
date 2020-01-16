@@ -24,7 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="../../static/css/admin.css" />
 	</head>
 	<body>
-		<div class="wrap-container">
+		<div id="div" class="wrap-container">
 
 					<div class="layui-form-item">
 						<label class="layui-form-label">商品编号：</label>
@@ -74,9 +74,19 @@
 
 			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
 		</div>
-
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script>
+        <script src="../../vue/Vue.js"></script>
+        <script  src="../../vue/vue-resource.js"></script>
+        <script src="../../vue/paragram.js"></script>
+        <script>
+            new Vue({
+                el:"#div",
+                created : function() {
+                    var requestObj = GetRequest();
+                    var userId=requestObj['id'];
+                    alert(userId);
+                }
+            });
 			function f() {
 				location.href="feedback.html";
 			}

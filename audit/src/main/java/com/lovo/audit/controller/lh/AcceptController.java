@@ -7,15 +7,18 @@ import com.lovo.audit.service.lh.IMarketingService;
 import com.lovo.audit.service.lh.ISpecificationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 商品促销接收Controller
  */
 
-@RestController
+@Controller
 public class AcceptController {
     @Autowired
     private IMarketingService marketingService;
@@ -40,9 +43,8 @@ public class AcceptController {
      * @return  方案集合
      */
     @RequestMapping(value = "findAllMessage")
+    @ResponseBody
     public String findAllMarkMessage(String currPage,String pageSize) throws JsonProcessingException {
-        System.out.println(pageSize);
-        System.out.println(currPage);
         int a = Integer.parseInt(currPage);
         int b = Integer.parseInt(pageSize);
         List<MarketingEntity> list = marketingService.findAllBy(a, b);
@@ -56,13 +58,27 @@ public class AcceptController {
         return om.writeValueAsString(page);
     }
 
-    /**
-     * 返回总页数
-     * @return  总页数
-     */
-    @RequestMapping(value = "fenYe")
-    public int findToTalPage(){
-        return marketingService.countAllBy();
+    @RequestMapping(value = "findById")
+    @ResponseBody
+    public ModelAndView findById(String id,String value){
+        int id2=Integer.parseInt(id);
+        ModelAndView modelAndView = new ModelAndView("");
+        MarketingEntity mark = marketingService.findById(id2);
+        if(value.equals("未通过")){
+
+        }else if(value.equals("已通过")){
+
+        }else if(value.equals("已审核")){
+
+        }
+        return modelAndView;
     }
 
+    @RequestMapping(value = "delById/{id}")
+    @ResponseBody
+    public String delById(@PathVariable("id")String id){
+        int a = Integer.parseInt(id);
+        marketingService.getIdUpStatus(a,3);
+        return "0";
+    }
 }

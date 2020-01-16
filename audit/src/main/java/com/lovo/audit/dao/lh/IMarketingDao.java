@@ -41,5 +41,6 @@ public interface IMarketingDao extends CrudRepository<MarketingEntity,Long> {
      * 统计总页数
      * @return  总页数
      */
+    @Query("select count(*) from MarketingEntity where status is not 3")
     public int countAllBy();
 }

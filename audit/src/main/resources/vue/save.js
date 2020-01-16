@@ -3,6 +3,12 @@ var vue = new Vue({
     el: "#div",
     data: {
         info: null
+    },
+    methods:{
+        del: function () {
+            //根据用户名和年龄查询
+            alert(1);
+        }
     }
 });
 

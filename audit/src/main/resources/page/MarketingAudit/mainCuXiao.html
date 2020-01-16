@@ -39,40 +39,110 @@
 									<td class="hidden-xs">{{l.productName}}</td>
 									<td class="hidden-xs">{{l.productPrice}}</td>
 									<td>{{l.productType}}</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)"  value="{{}}">{{l.status}}</button></td>
 									<td>
+                                        <div class="layui-inline">
+                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="l.productId" onclick="find(this.id,this.value)" v-if="l.status===0"  value="未通过">未通过</button>
+                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="l.productId" onclick="find(this.id,this.value)" v-if="l.status===1"  value="已通过">已通过</button>
+                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="l.productId" onclick="find(this.id,this.value)" v-if="l.status===2"  value="已审核">已审核</button>
+                                        </div>
+                                    </td>
+                                    <td>
 										<div class="layui-inline">
-											<button class="layui-btn layui-btn-mini layui-btn-danger del-btn" data-id="1" onclick="del()"><i class="layui-icon">&#xe640;</i></button>
+											<button class="layui-btn layui-btn-mini layui-btn-danger del-btn" data-id="1" @click="del(l.productId)"><i class="layui-icon">&#xe640;</i></button>
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<div id="fenYe" style="text-align: center;"></div>
-<!--
-                        <input id="hidden" type="hidden" v-model="totalPage">
--->
 					</div>
 		</div>
-        <script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>		<script src="../../static/js/common.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../static/js/common.js" type="text/javascript" charset="utf-8"></script>
 		<!--vue-->
 		<script src="../../vue/Vue.js"></script>
 		<!--使用ajax 需要导入-->
 		<script  src="../../vue/vue-resource.js"></script>
 		<!--获取URL的参数-->
 		<script  src="../../vue/paragram.js"></script>
-        <script src="../../vue/save.js"></script>
 		<script>
+            //使用Vue渲染模板，初始化时是没有数据的，需要ajax请求拿到数据
+            var vue = new Vue({
+                el: "#div",
+                data: {
+                    info: null,
+                },
+                methods:{
+                    del: function (id) {
+                        layer.confirm('您确定删除吗？', {
+                            btn: ['是','否'] //按钮
+                        }, function(){
+                            layer.msg('删除成功', {
+                                time: 1000, //0.5s后自动关闭
+                                icon: 1});
+                            dell(id);
+                        }, function(){
+                            layer.msg('取消删除', {
+                                time: 1000 //0.5s后自动关闭
+                            });
+                        });
+                        function dell(id) {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/delById/'+id,
+                                //async: false,//这里设置为同步执行，目的是等数据加载完再调用layui分页组件，不然分页组件拿不到totalCount的值
+                                success: function (data) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            //使用layui分页
+            layui.use('laypage', function () {
+                var laypage = layui.laypage;
+                laypage.render({
+                    elem: 'fenYe'
+                    , count: totalCount
+                    , limit :8
+                    , groups:5
+                    , layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+                    , jump: function (obj, first) {
+                        //点击非第一页页码时的处理逻辑。比如这里调用了ajax方法，异步获取分页数据
+                        if (!first) {
+                            pagination(obj.curr, obj.limit);//第二个参数不能用变量pageSize，因为当切换每页大小的时候会出问题
+                        }
+                    }
+                });
+            });
+
+            var pageIndex = 1;
+            var pageSize = 8;
+            var totalCount = 0;
+            pagination(pageIndex, pageSize);
+            function pagination(pageIndex, pageSize) {
+                //查询条件
+                var param = {
+                    currPage: pageIndex,
+                    pageSize: pageSize,
+                    //其它查询条件可在下面添加
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/findAllMessage',
+                    dataType: 'json',
+                    data: param,
+                    async: false,//这里设置为同步执行，目的是等数据加载完再调用layui分页组件，不然分页组件拿不到totalCount的值
+                    success: function (data) {
+                        vue.info = data.list;
+                        totalCount = data.totalPage;
+                    }
+                });
+            };
 			/*弹出页面，小窗口 不要管*/
-			function find(btn){
-				var a="";
-				if(btn =='已通过'){
-					a="afternoon.html";
-				}else if(btn =='未通过' ){
-					a="unfinished.html";
-				}else if(btn=='已审核'){
-					a="afternoon.html";
-				}
+			function find(id,btn){
+				var a="/findById?id="+id+"&value="+btn+"";
 				var index =layer.open({
 					type: 2,
 					skin: 'a', //样式类名
@@ -96,22 +166,6 @@
 				} else {
 					return ['70%', '70%'];
 				}
-			}
-			//点击删除一条记录
-			function del() {
-				layer.confirm('您确定删除吗？', {
-					btn: ['是','否'] //按钮
-				}, function(){
-					layer.msg('删除成功', {
-						time: 1000, //0.5s后自动关闭
-						icon: 1});
-					//在这里写方法
-
-				}, function(){
-					layer.msg('取消删除', {
-						time: 1000 //0.5s后自动关闭
-					});
-				});
 			}
 		</script>
 	</body>
