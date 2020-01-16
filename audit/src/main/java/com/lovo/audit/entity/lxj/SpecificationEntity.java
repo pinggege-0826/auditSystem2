@@ -1,5 +1,6 @@
 package com.lovo.audit.entity.lxj;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lovo.audit.entity.lh.MarketingEntity;
 
 import javax.persistence.*;
@@ -48,6 +49,7 @@ public class SpecificationEntity implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "marketingFid")
+    @JsonIgnoreProperties(value = {"productNorms_list"})
     private MarketingEntity marketing;
 
     public MarketingEntity getMarketing() {

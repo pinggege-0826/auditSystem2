@@ -1,3 +1,4 @@
+/*
 package com.lovo.audit.config;
 
 import org.springframework.amqp.core.*;
@@ -70,3 +71,4 @@ public class MQConfig {
         return new ServerEndpointExporter();
     }
 }
+*/
