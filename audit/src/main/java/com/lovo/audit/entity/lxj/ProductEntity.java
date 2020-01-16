@@ -43,10 +43,10 @@ public class ProductEntity implements Serializable {
     private int productNum;
 
     /**
-     * 商品规格集合
+     * 商品_规格_中间表集合
      */
     @OneToMany(mappedBy = "product")
-    private List<SpecificationEntity> specificationEntityList;
+    private List<Product_Specification_Entity> product_specification_entityList;
 
     /**
      * 采购单对象
@@ -107,12 +107,12 @@ public class ProductEntity implements Serializable {
         this.productNum = productNum;
     }
 
-    public List<SpecificationEntity> getSpecificationEntityList() {
-        return specificationEntityList;
+    public List<Product_Specification_Entity> getProduct_specification_entityList() {
+        return product_specification_entityList;
     }
 
-    public void setSpecificationEntityList(List<SpecificationEntity> specificationEntityList) {
-        this.specificationEntityList = specificationEntityList;
+    public void setProduct_specification_entityList(List<Product_Specification_Entity> product_specification_entityList) {
+        this.product_specification_entityList = product_specification_entityList;
     }
 
     public BuyOrderEntity getBuyOrder() {
