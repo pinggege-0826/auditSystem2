@@ -1,5 +1,7 @@
 package com.lovo.audit.entity.lxj;
 
+import com.lovo.audit.entity.hjp.SupplyOrderEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -31,6 +33,9 @@ public class BuyOrderEntity  implements Serializable {
 
     /**
      * 状态
+     *      0-初始化状态
+     *      1-订购中状态
+     *      2-审核未通过状态
      */
     private int buyStatus;
 
@@ -39,6 +44,12 @@ public class BuyOrderEntity  implements Serializable {
      */
     @OneToMany(mappedBy = "buyOrder")
     private List<ProductEntity> productEntityList;
+
+    /**
+     * 供货订单集合
+     */
+    @OneToMany(mappedBy = "buyOrderEntity")
+    private List<SupplyOrderEntity> supplyOrderEntityList;
 
     public BuyOrderEntity() {
     }
@@ -81,5 +92,13 @@ public class BuyOrderEntity  implements Serializable {
 
     public void setProductEntityList(List<ProductEntity> productEntityList) {
         this.productEntityList = productEntityList;
+    }
+
+    public List<SupplyOrderEntity> getSupplyOrderEntityList() {
+        return supplyOrderEntityList;
+    }
+
+    public void setSupplyOrderEntityList(List<SupplyOrderEntity> supplyOrderEntityList) {
+        this.supplyOrderEntityList = supplyOrderEntityList;
     }
 }

@@ -32,8 +32,6 @@ public class SupplyGoodsEntity {
     @OneToMany(mappedBy = "supplyGoodsEntity")
     private List<SizeToSupplyGoods>toSupplyGoodsList;
 
-
-
     /**单价*/
     @Column(name = "sg_price")
     private int price;
@@ -41,6 +39,11 @@ public class SupplyGoodsEntity {
     /**商品数量*/
     @Column(name = "sg_goodsNum")
     private int goodsNum;
+
+    /**订单对象*/
+    @ManyToOne
+    @JoinColumn(name = "sg_soid")
+    private SupplyOrderEntity supplyOrderEntity;
 
     public int getId() {
         return id;
