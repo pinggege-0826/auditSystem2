@@ -29,6 +29,7 @@ public class BuyOrderEntity  implements Serializable {
     /**
      * 下单时间
      */
+    @Column(columnDefinition = "Datetime")
     private Date buyDate;
 
     /**

@@ -38,7 +38,7 @@ public class BidEntity {
     /**
      * 下单时间
      */
-    @Column(length = 48)
+    @Column(length = 48,columnDefinition = "Datetime")
     private String orderDate;
 
     /**
