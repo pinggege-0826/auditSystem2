@@ -19,51 +19,85 @@
 		<link rel="stylesheet" type="text/css" href="../../static/css/admin.css" />
 	</head>
 	<body>
-		<div class="wrap-container">
-			<form class="layui-form" style="width: 90%;padding-top: 20px;">
-					<div class="layui-form-item">
-						<label class="layui-form-label">商品编号：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="9527" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">商品名：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="舒服" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">单价：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="10000" autocomplete="off" class="layui-input">
-						</div>
+		<div id="div" class="wrap-container">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品编号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="id" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="name" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单价：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="price" autocomplete="off" class="layui-input">
+                    </div>
 
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">规格：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="大大大" autocomplete="off" class="layui-input">
-						</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">规格：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="大大大" autocomplete="off" class="layui-input">
+                    </div>
 
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">商品类型：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="水果" autocomplete="off" class="layui-input">
-						</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品类型：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="type" autocomplete="off" class="layui-input">
+                    </div>
 
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">促销折扣：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="0.25" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-				</form>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">促销折扣：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="discount" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
 		</div>
 
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../vue/Vue.js"></script>
+        <script  src="../../vue/vue-resource.js"></script>
+        <script src="../../vue/paragram.js"></script>
+        <script>
+            new Vue({
+                el:"#div",
+                data:{
+                    id:"",
+                    name :"",
+                    price :"",
+                    type :"",
+                    discount :"",
+                    markId:""
+                },
+                created : function() {
+                    var requestObj = GetRequest();
+                    var markId=requestObj['id'];
+                    alert(markId);
+                    this.markId=markId;
+                    this.$http.post('/findById',
+                        {
+                            markId:this.markId
+                        },
+                        {emulateJSON:true}).then(function(res){
+                        var result = res.body;
+                        this.id = result.productCode;
+                        this.name = result.productName;
+                        this.price = result.productPrice;
+                        this.type = result.productType;
+                        this.discount = result.discount;
+                    },function(res){
+                        console.log(res.status);
+                    });
+                }
+            });
+            </script>
 	</body>
 
 </html>

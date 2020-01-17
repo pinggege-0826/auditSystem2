@@ -41,9 +41,9 @@
 									<td>{{l.productType}}</td>
 									<td>
                                         <div class="layui-inline">
-                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="l.productId" onclick="find(this.id,this.value)" v-if="l.status===0"  value="未通过">未通过</button>
-                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="l.productId" onclick="find(this.id,this.value)" v-if="l.status===1"  value="已通过">已通过</button>
-                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="l.productId" onclick="find(this.id,this.value)" v-if="l.status===2"  value="已审核">已审核</button>
+                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:data-id="l.productId" data-url="unfinished.html" v-if="l.status===0"  value="未通过">未通过</button>
+                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:data-id="l.productId" data-url="afternoon.html"  v-if="l.status===2"  value="已通过">已通过</button>
+                                            <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:data-id="l.productId" data-url="afternoon.html"  v-if="l.status===1"  value="已审核">已审核</button>
                                         </div>
                                     </td>
                                     <td>
@@ -140,26 +140,43 @@
                     }
                 });
             };
-			/*弹出页面，小窗口 不要管*/
-			function find(id,btn){
-				var a="/findById?id="+id+"&value="+btn+"";
-				var index =layer.open({
-					type: 2,
-					skin: 'a', //样式类名
-					title: '<div class="layui-layer-title" style="cursor: move;">促销详情</div>',
-					//closeBtn: 1, //不显示关闭按钮
-					//anim: 2,
-					area: setpage(),
-					//shadeClose: false, //开启遮罩关闭
-					//页面最大最小化，true可以最大最小化，false没有最大最小化
-					maxmin: true,
-					offset: ['2px','15px'],
-					/*要跳的页面*/
-					content: a
-				});
-				layer.full(index);
-			}
-			//定义弹出的窗口根据不同屏幕分辨率来改变大小
+
+            //列表查询
+            $('#table-list').on('click', '.table-list-status', function() {
+                var url=$(this).attr('data-url');
+                var id = $(this).attr('data-id');
+                var value=$(this).attr('value');
+                var a = url+"?id="+id;
+                find(a,value);
+                return false;
+            });
+            /*弹出页面，小窗口 不要管*/
+            function find(url,btn){
+                var a="";
+                if(btn =='已通过'){
+                    a=url;
+                }else if(btn =='未通过' ){
+                    a=url;
+                }else if(btn =='已审核'){
+                    a=url;
+                }
+                var index =layer.open({
+                    type: 2,
+                    skin: 'a', //样式类名
+                    title: '<div class="layui-layer-title" style="cursor: move;">促销详情</div>',
+                    //closeBtn: 1, //不显示关闭按钮
+                    //anim: 2,
+                    area: setpage(),
+                    //shadeClose: false, //开启遮罩关闭
+                    //页面最大最小化，true可以最大最小化，false没有最大最小化
+                    maxmin: true,
+                    offset: ['2px','15px'],
+                    /*要跳的页面*/
+                    content: a
+                });
+                layer.full(index);
+            }
+            //定义弹出的窗口根据不同屏幕分辨率来改变大小
 			function setpage() {
 				if ($(window).width() < 458) {
 					return ['100%', '100%'];

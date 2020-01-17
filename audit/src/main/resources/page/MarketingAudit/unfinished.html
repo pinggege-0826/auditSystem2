@@ -29,19 +29,19 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">商品编号：</label>
 						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="9527" autocomplete="off" class="layui-input">
+							<input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="id" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<label class="layui-form-label">商品名：</label>
 						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="舒服" autocomplete="off" class="layui-input">
+							<input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="name" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<label class="layui-form-label">单价：</label>
 						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="10000" autocomplete="off" class="layui-input">
+							<input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="price" autocomplete="off" class="layui-input">
 						</div>
 
 					</div>
@@ -55,24 +55,24 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">商品类型：</label>
 						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="水果" autocomplete="off" class="layui-input">
+							<input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="type" autocomplete="off" class="layui-input">
 						</div>
 
 					</div>
 					<div class="layui-form-item">
 						<label class="layui-form-label">促销折扣：</label>
 						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="0.25" autocomplete="off" class="layui-input">
+							<input type="text" name="title" disabled="disabled" required lay-verify="required" v-model="discount" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">通过</button>
+							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo" @click="tongGuo()">通过</button>
 							<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
 						</div>
 					</div>
 
-			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
+			<button @click="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
 		</div>
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
         <script src="../../vue/Vue.js"></script>
@@ -81,15 +81,53 @@
         <script>
             new Vue({
                 el:"#div",
+                data:{
+                    id:"",
+                    name :"",
+                    price :"",
+                    type :"",
+                    discount :"",
+                    markId:""
+                },
                 created : function() {
                     var requestObj = GetRequest();
-                    var userId=requestObj['id'];
-                    alert(userId);
+                    var markId=requestObj['id'];
+                    this.markId=markId;
+                    this.$http.post('/findById',
+                        {
+                            markId:this.markId
+                        },
+                        {emulateJSON:true}).then(function(res){
+                            var result = res.body;
+                            this.id = result.productCode;
+                            this.name = result.productName;
+                            this.price = result.productPrice;
+                            this.type = result.productType;
+                            this.discount = result.discount;
+                    },function(res){
+                        console.log(res.status);
+                    });
+                },
+                methods : {
+                    tongGuo:function() {
+                        var id = this.markId;
+                        this.$http.post('/tongGuo/'+id,
+                            {
+                            },
+                            {emulateJSON:true}).then(function(res){
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.location.reload();//刷新父页面
+                            parent.layer.close(index); //成功再执行关闭
+                        },function(res){
+                            console.log(res.status);
+                        });
+                    },
+                    f:function () {
+                        var id = this.markId;
+                        location.href="feedback.html?id="+id;
+                    }
                 }
             });
-			function f() {
-				location.href="feedback.html";
-			}
 		</script>
 	</body>
 

@@ -17,7 +17,7 @@ public interface IMarketingDao extends CrudRepository<MarketingEntity,Long> {
      * 查询所有促销方案并分好页
      * @return  方案集合
      */
-    @Query("from MarketingEntity where status is not 3")
+    @Query("from MarketingEntity where status is not 3 order by status")
     public List<MarketingEntity> findAllBy(Pageable pageable);
 
     /**
@@ -38,8 +38,8 @@ public interface IMarketingDao extends CrudRepository<MarketingEntity,Long> {
 
 
     /**
-     * 统计总页数
-     * @return  总页数
+     * 统计总条数
+     * @return  总条数
      */
     @Query("select count(*) from MarketingEntity where status is not 3")
     public int countAllBy();

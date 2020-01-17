@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 商品促销接收Controller
@@ -60,20 +59,18 @@ public class AcceptController {
 
     @RequestMapping(value = "findById")
     @ResponseBody
-    public ModelAndView findById(String id,String value){
-        int id2=Integer.parseInt(id);
-        ModelAndView modelAndView = new ModelAndView("");
-        MarketingEntity mark = marketingService.findById(id2);
-        if(value.equals("未通过")){
-
-        }else if(value.equals("已通过")){
-
-        }else if(value.equals("已审核")){
-
-        }
-        return modelAndView;
+    public String findById(String markId) throws JsonProcessingException {
+            int a = Integer.parseInt(markId);
+            MarketingEntity byId = marketingService.findById(a);
+            ObjectMapper om = new ObjectMapper();
+            return om.writeValueAsString(byId);
     }
 
+    /**
+     * 删除促销方案
+     * @param id  促销方案Id
+     * @return    0:代表删除
+     */
     @RequestMapping(value = "delById/{id}")
     @ResponseBody
     public String delById(@PathVariable("id")String id){

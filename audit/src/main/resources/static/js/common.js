@@ -1,5 +1,5 @@
 layui.config({
-	base: '../static/js/module/'
+	base: '/static/js/module/dialog.js'
 }).extend({
 	dialog: 'dialog',
 });
@@ -23,16 +23,16 @@ layui.use(['form', 'jquery', 'laydate', 'layer', 'laypage', 'dialog',   'element
 	form.render();	
 	//顶部添加
 	$('.addBtn').click(function() {
-		var url=$(this).attr('data-url');
-		//将iframeObj传递给父级窗口,执行操作完成刷新
-		parent.page("菜单添加", url, iframeObj, w = "700px", h = "620px");
-		return false;
+        var url=$(this).attr('data-url');
+        //将iframeObj传递给父级窗口,执行操作完成刷新
+        parent.page("菜单添加", url, iframeObj, w = "700px", h = "620px");
+        return false;
 
-	}).mouseenter(function() {
+    }).mouseenter(function() {
 
-		dialog.tips('添加', '.addBtn');
+        dialog.tips('添加', '.addBtn');
 
-	})
+    })
 	//顶部排序
 	$('.listOrderBtn').click(function() {
 		var url=$(this).attr('data-url');
@@ -70,16 +70,16 @@ layui.use(['form', 'jquery', 'laydate', 'layer', 'laypage', 'dialog',   'element
 
 		dialog.tips('批量删除', '.delBtn');
 
-	})	
+	})
 	//列表添加
-	$('#table-list').on('click', '.add-btn', function() {
+	/*$('#table-list').on('click', '.add-btn', function() {
 		var url=$(this).attr('data-url');
 		//将iframeObj传递给父级窗口
 		parent.page("菜单添加", url, iframeObj, w = "700px", h = "620px");
 		return false;
-	})
+	})*/
 	//列表删除
-	$('#table-list').on('click', '.del-btn', function() {
+	/*$('#table-list').on('click', '.del-btn', function() {
 		var url=$(this).attr('data-url');
 		var id = $(this).attr('data-id');
 		dialog.confirm({
@@ -108,12 +108,13 @@ layui.use(['form', 'jquery', 'laydate', 'layer', 'laypage', 'dialog',   'element
 		//将iframeObj传递给父级窗口
 		parent.page("菜单编辑", url + "?id=" + id, iframeObj, w = "700px", h = "620px");
 		return false;
-	})
+	})*/
 });
 
 /**
  * 控制iframe窗口的刷新操作
  */
+/*
 var iframeObjName;
 
 //父级弹出页面
@@ -152,9 +153,9 @@ function page(title, url, obj, w, h) {
 	}
 }
 
-/**
+/!**
  * 刷新子页,关闭弹窗
- */
+ *!/
 function refresh() {
 	//根据传递的name值，获取子iframe窗口，执行刷新
 	if(window.frames[iframeObjName]) {
@@ -165,4 +166,4 @@ function refresh() {
 	}
 
 	layer.closeAll();
-}
+}*/
