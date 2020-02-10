@@ -2,6 +2,7 @@ package com.lovo.audit.entity.cpy;
 /**
  * 供应商实体类
  * */
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lovo.audit.entity.lxj.BidEntity;
 
 import javax.persistence.*;

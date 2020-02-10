@@ -1,5 +1,6 @@
 package com.lovo.audit.entity.lxj;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lovo.audit.entity.cpy.CompanyEntity;
 
 import javax.persistence.*;
@@ -60,6 +61,7 @@ public class BidEntity {
      * 供货商集合
      */
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<CompanyEntity> companyEntityList;
 
     public int getBidId() {
