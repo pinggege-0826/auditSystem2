@@ -35,7 +35,8 @@
 								<tr v-for="u in info" id='node-1' class="parent collapsed">
 									<td class="hidden-xs" v-model="id">{{u.id}}</td>
 									<td class="hidden-xs">{{u.companyName}}</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" v-if="u.companyStatus==='0'"  value="未通过">未通过</button>
+									<td>
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" v-if="u.companyStatus==='0'"  value="未通过">未通过</button>
 										<button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" v-if="u.companyStatus==='1'"  value="已审核">已审核</button>
 										<button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" v-if="u.companyStatus==='2'"  value="已冻结">已冻结</button>
 									</td>

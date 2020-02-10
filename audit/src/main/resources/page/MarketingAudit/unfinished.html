@@ -115,9 +115,9 @@
                             {
                             },
                             {emulateJSON:true}).then(function(res){
-                            var index = parent.layer.getFrameIndex(window.name);
-                            parent.location.reload();//刷新父页面
-                            parent.layer.close(index); //成功再执行关闭
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.location.reload();//刷新父页面
+                                parent.layer.close(index); //成功再执行关闭
                         },function(res){
                             console.log(res.status);
                         });

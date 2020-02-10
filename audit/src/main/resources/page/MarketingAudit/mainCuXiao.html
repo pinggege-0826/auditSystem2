@@ -55,7 +55,7 @@
 							</tbody>
 						</table>
 						<div id="fenYe" style="text-align: center;"></div>
-					</div>
+                    </div>
 		</div>
         <script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
         <script src="../../static/js/common.js" type="text/javascript" charset="utf-8"></script>
@@ -72,6 +72,18 @@
                 data: {
                     info: null,
                 },
+                /*mounted(){
+                    if(this.timer){
+                        clearInterval(this.timer);
+                    }else{
+                        this.timer = setInterval(()=>{
+                            pagination(1, 8);
+                        },10000000);
+                    }
+                },
+                destroyed(){
+                    clearInterval(this.timer);
+                },*/
                 methods:{
                     del: function (id) {
                         layer.confirm('您确定删除吗？', {
@@ -116,7 +128,6 @@
                     }
                 });
             });
-
             var pageIndex = 1;
             var pageSize = 8;
             var totalCount = 0;
