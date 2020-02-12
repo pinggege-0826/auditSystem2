@@ -36,7 +36,7 @@
 									<td class="hidden-xs">{{s.supplierName}}</td>
 									<td class="hidden-xs">{{s.orderNum}}</td>
 									<td class="hidden-xs">{{s.allMoney}}</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" value="商品详情">商品详情</button></td>
+									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" v-bind:id="s.id" onclick="find(this.value,this.id)" value="商品详情">商品详情</button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -144,7 +144,7 @@
 					a="afternoon.html";
 
 				}else if(btn =='商品详情',id ){
-					a="" + id;
+					a="/showSupplyGoodsById?id=" + id;
 					var index =layer.open({
 						type: 2,
 						skin: 'a', //样式类名
