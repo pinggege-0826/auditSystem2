@@ -30,9 +30,14 @@ public interface ICompanyService {
     /**
      * 根据公司Id修改供应商的状态
      * @param id       公司Id
-     * @param level   供应商状态  （0为未审核，1为正常，2为冻结）
+     * @param level   供应商等级  （0为未审核，1为正常，2为冻结）
      */
     public void updateStatusById(String level,Integer id);
+    /**
+     * 根据公司Id修改供应商的状态
+     * @param id       公司Id
+     */
+    public void updateStatus(Integer id);
 
     /**
      * 删除供应商

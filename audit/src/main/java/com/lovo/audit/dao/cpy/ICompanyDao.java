@@ -15,13 +15,20 @@ public interface ICompanyDao extends CrudRepository<CompanyEntity,Integer> {
     @Query("from CompanyEntity")
     public List<CompanyEntity> findAllCompany(Pageable pageable);
     /**
-     * 通过公司ID修改公司状态
+     * 通过公司ID和等级修改公司状态
      * @param level 公司状态
      * @param id 公司编号
      */
     @Query("update CompanyEntity set companyStatus ='1',companyLevel =?1 where id = ?2")
     @Modifying
     public void updateStatusById(String level, Integer id);
+    /**
+     * 通过公司ID修改公司状态
+     * @param id 公司编号
+     */
+    @Query("update CompanyEntity set companyStatus ='3' where id = ?1")
+    @Modifying
+    public void updateStatus(Integer id);
     /**
      * 通过公司ID查询公司
      * @param id 公司ID

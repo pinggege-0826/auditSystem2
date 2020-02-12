@@ -85,7 +85,7 @@
 							<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
 						</div>
 					</div>
-			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
+			<button @click="noSubmit()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
 		</div>
 
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -151,13 +151,14 @@
 						},function(res){
 							console.log(res.status);
 						});
+					},
+					noSubmit:function () {
+						var id = this.id;
+						location.href="feedback.html?id="+id;
 					}
 
 				}
 			});
-			function f() {
-				location.href="feedback.html";
-			}
 		</script>
 	</body>
 
