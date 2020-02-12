@@ -18,7 +18,7 @@ public interface IReserveMoneyService {
      * @param userId 用户id
      * @param money 预存款存款金额
      */
-    public int saveReserveMoneyByUserId(String userId,int money);
+    public String saveReserveMoneyByUserId(String userId,int money);
 
     /**
      * 根据用户id取款
@@ -27,7 +27,7 @@ public interface IReserveMoneyService {
      * @param money 预存款取款金额
      * @Return 返回数字0和1,0表示取款成功，1表示取款失败
      */
-    public int getReserveMoneyByUserId(String userId,int money);
+    public String getReserveMoneyByUserId(String userId,int money);
 
     /**
      * 根据用户的充值总金额修改用户的等级

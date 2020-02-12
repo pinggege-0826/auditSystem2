@@ -23,24 +23,24 @@ public class ReserveMoneyServiceImpl implements IReserveMoneyService {
     }
 
     @Override
-    public int saveReserveMoneyByUserId(String userId, int money) {
+    public String saveReserveMoneyByUserId(String userId, int money) {
         int oldMoney = reserveMoneyDao.findMoneyByUserId(userId);
         int totalMoney = money + oldMoney;
         reserveMoneyDao.updateTotalMoneyByUserId(userId,totalMoney);
-        return 0;
+        return "0";
     }
 
     @Override
-    public int getReserveMoneyByUserId(String userId, int money) {
-        int result = 0;
-        int oldMoney = reserveMoneyDao.findMoneyByUserId(userId);
-        if (money > oldMoney){
-            result = 1;
-        }else {
-            int totalMoney = oldMoney - money;
-            reserveMoneyDao.updateTotalMoneyByUserId(userId,totalMoney);
-        }
-        return result;
+    public String getReserveMoneyByUserId(String userId, int money) {
+            String result = "0";
+            int oldMoney = reserveMoneyDao.findMoneyByUserId(userId);
+            if (money > oldMoney){
+                result = "1";
+            }else {
+                int totalMoney = oldMoney - money;
+                reserveMoneyDao.updateTotalMoneyByUserId(userId,totalMoney);
+            }
+            return result;
     }
 
     @Override
