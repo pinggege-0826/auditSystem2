@@ -14,6 +14,13 @@ public interface IReserveMoneyService {
     public void addReserveMoneyUser(ReserveMoneyEntity reserveMoneyEntity);
 
     /**
+     * 通过用户id查找预存款id
+     * @param userId 用户id
+     * @return 预存款id
+     */
+    public int findReserveIdByUserId(String userId);
+
+    /**
      * 根据用户id存款
      * @param userId 用户id
      * @param money 预存款存款金额

@@ -23,6 +23,11 @@ public class ReserveMoneyServiceImpl implements IReserveMoneyService {
     }
 
     @Override
+    public int findReserveIdByUserId(String userId) {
+        return reserveMoneyDao.findReserveIdByUserId(userId);
+    }
+
+    @Override
     public String saveReserveMoneyByUserId(String userId, int money) {
         int oldMoney = reserveMoneyDao.findMoneyByUserId(userId);
         int totalMoney = money + oldMoney;

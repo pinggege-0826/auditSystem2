@@ -17,4 +17,9 @@ public interface IReserveMoneyDao extends CrudRepository<ReserveMoneyEntity,Inte
 
     @Query("select totalMoney from ReserveMoneyEntity where userId = ?1")
     public int findTotalMoneyByUserId(String userId);
+
+    @Query("select reserveId from ReserveMoneyEntity where userId = ?1")
+    public int findReserveIdByUserId(String userId);
 }
+
+

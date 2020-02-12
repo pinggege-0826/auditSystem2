@@ -1,5 +1,7 @@
 package com.lovo.audit.controller.sl;
 
+import com.lovo.audit.entity.sl.RecordEntity;
+import com.lovo.audit.entity.sl.ReserveMoneyEntity;
 import com.lovo.audit.service.sl.IRecordService;
 import com.lovo.audit.service.sl.IReserveMoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,17 @@ public class MoneyController {
 
     @RequestMapping("saveReserveMoney")
     @ResponseBody
-    public int saveReserveMoney(String userId,String money){
+    public String saveReserveMoney(String userId,String money){
         int money1 = Integer.parseInt(money);
-        return reserveMoneyService.saveReserveMoneyByUserId(userId,money1);
+        String result = reserveMoneyService.saveReserveMoneyByUserId(userId,money1);
+        return result;
+    }
+
+    @RequestMapping("getReserveMoney")
+    @ResponseBody
+    public String getReserveMoney(String userId,String money){
+        int money1 = Integer.parseInt(money);
+        return reserveMoneyService.getReserveMoneyByUserId(userId, money1);
     }
 
 
