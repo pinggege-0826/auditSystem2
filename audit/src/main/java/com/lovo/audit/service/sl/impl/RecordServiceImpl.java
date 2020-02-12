@@ -5,6 +5,7 @@ import com.lovo.audit.entity.sl.RecordEntity;
 import com.lovo.audit.service.sl.IRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * 预存款记录业务层接口实现类
  */
 @Service(value = "recordService")
+@Transactional
 public class RecordServiceImpl implements IRecordService {
 
     @Autowired
