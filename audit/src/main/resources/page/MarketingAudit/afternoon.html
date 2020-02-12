@@ -77,7 +77,6 @@
                 created : function() {
                     var requestObj = GetRequest();
                     var markId=requestObj['id'];
-                    alert(markId);
                     this.markId=markId;
                     this.$http.post('/findById',
                         {

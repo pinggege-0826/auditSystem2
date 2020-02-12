@@ -19,6 +19,11 @@
 	</head>
 	<body>
 		<div id="div" class="wrap-container">
+            <div class="layui-form-item layui-form-text">
+                <div class="layui-input-block">
+                    <label class="layui-form-label" ></label>
+                </div>
+            </div>
 					<div class="layui-form-item layui-form-text">
 						<label class="layui-form-label">问题</label>
 						<div class="layui-input-block">
@@ -33,7 +38,7 @@
 
 						</div>
 					</div>
-			<button id="weizhi" class="layui-btn layui-btn-normal" onclick="find()" >返回</button>
+			<button id="weizhi" class="layui-btn layui-btn-normal" @click="find()" >返回</button>
 		</div>
 
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -65,12 +70,15 @@
                         },function(res){
                             console.log(res.status);
                         });
+                    },
+                    find:function () {
+                        var requestObj = GetRequest();
+                        var markId=requestObj['id'];
+                        var id = markId;
+                        location.href="unfinished.html?id="+id;
                     }
                 }
             });
-			function find() {
-				location.href="unfinished.html";
-			}
 		</script>
 	</body>
 

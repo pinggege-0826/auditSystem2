@@ -6,6 +6,7 @@ import com.lovo.audit.entity.lxj.SpecificationEntity;
 import com.lovo.audit.service.lh.IMarketingService;
 import com.lovo.audit.service.lh.ISpecificationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +27,11 @@ public class AcceptController {
 
     /**
      * 保存队列中传过来的促销方案对象JSON
-     * @param promotionPlan  JSON促销方案
-     */
-    @RequestMapping(value = "saveMarketing")
-    public void saveMarketing(String promotionPlan){
+     * */
+    //@RabbitListener(queues = "getStoreMessageQueue")
+    public void saveMarketing(String message){
+        //从队列中取出来
+
         MarketingEntity mark = new MarketingEntity();
         SpecificationEntity spe = new SpecificationEntity();
         //保存促销商品
@@ -37,6 +39,7 @@ public class AcceptController {
         //保存促销商品的规格集合对象
         specificationService.saveSpecification(spe);
     }
+
     /**
      * 展示所有保存了的促销方案信息
      * @return  方案集合

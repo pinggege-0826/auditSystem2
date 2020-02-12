@@ -41,8 +41,8 @@ public class MQConfig {
 
 
     /**
-     * 返回队列(不用管)
-     * @return  队列Template
+     * 返回MQ模板(不用管)
+     * @return  模板Template
      */
     @Bean
     public RabbitTemplate createRabbitTemplate(){
