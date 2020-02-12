@@ -30,6 +30,7 @@ public class MQConfig {
     public Queue getSalesPassFromCheckQueue(){
         return  new Queue("getSalesPassFromCheckQueue");
     }
+
     /**
      * 供应商审核发送消息队列
      */
@@ -37,6 +38,23 @@ public class MQConfig {
     public Queue auditResultQueue(){
         return  new Queue("auditResultQueue");
     }
+
+    /**
+     * 采购单审核发送消息队列
+     */
+    @Bean
+    public Queue sendPurchaseMessageQueue(){
+        return new Queue("sendPurchaseMessageQueue");
+    }
+
+    /**
+     *绑定采购单审核发送消息队列
+     */
+    @Bean
+    public Binding purchaseDirectExchange(Queue sendPurchaseMessageQueue, DirectExchange createDirectExchange){
+        return BindingBuilder.bind(sendPurchaseMessageQueue).to(createDirectExchange).with("sendPurchase");
+    }
+
     /**
      * 绑定促销审核发送消息队列
      */
