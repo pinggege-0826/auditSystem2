@@ -31,7 +31,7 @@ public class CompanyEntity {
     @Column(name = "c_level",length = 24)
     private String companyLevel;/**公司等级*/
     @Column(name = "c_status",length = 12)
-    private String companyStatus;/**公司状态（0为未审核，1为正常，2为冻结）*/
+    private String companyStatus;/**公司状态（0为未审核，1为正常，2为冻结，3为未通过）*/
     @ManyToOne
     @JoinColumn(name = "fk_id")
     private BidEntity product;

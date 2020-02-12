@@ -41,6 +41,11 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
+    public void updateStatus(Integer id) {
+        companyDao.updateStatus(id);
+    }
+
+    @Override
     public void deleteCompany(Integer id) {
         companyDao.deleteCompany(id);
     }

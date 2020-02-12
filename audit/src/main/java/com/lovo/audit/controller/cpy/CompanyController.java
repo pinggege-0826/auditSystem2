@@ -47,15 +47,16 @@ public class CompanyController {
         companyService.deleteCompany(id);
         return "";
     }
-    @RequestMapping("updateCompany")
-    @ResponseBody
-    @Transactional
-    public String updateCompany(CompanyEntity company){
-        String level = company.getCompanyLevel();
-        Integer id = company.getId();
-        companyService.updateStatusById(level,id);
-        return "修改成功";
-    }
+//    @RequestMapping("updateCompany")
+//    @ResponseBody
+//    @Transactional
+//    public String updateCompany(CompanyEntity company){
+//        String level = company.getCompanyLevel();
+//        Integer id = company.getId();
+//
+//        companyService.updateStatusById(level,id);
+//        return "修改成功";
+//    }
     @RequestMapping("findCompany/{id}")
     @ResponseBody
     public String userInfo(@PathVariable("id")String id) throws JsonProcessingException {

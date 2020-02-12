@@ -18,29 +18,62 @@
 		<link rel="stylesheet" type="text/css" href="../../static/css/admin.css" />
 	</head>
 	<body>
-		<div class="wrap-container">
+		<div id="back" class="wrap-container">
 					<div class="layui-form-item layui-form-text">
 						<label class="layui-form-label">问题</label>
 						<div class="layui-input-block">
-							<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+							<textarea name="desc" v-model="question" placeholder="请输入内容" class="layui-textarea"></textarea>
 						</div>
 					</div>
 
 					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">提交</button>
+							<button @click="submit()" class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">提交</button>
 							<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
 
 						</div>
 					</div>
-			<button id="weizhi" class="layui-btn layui-btn-normal" onclick="find()" >返回</button>
+			<button id="weizhi" class="layui-btn layui-btn-normal" @click="find()" >返回</button>
 		</div>
 
 		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../vue/Vue.js"></script>
+		<script  src="../../vue/vue-resource.js"></script>
+		<script src="../../vue/paragram.js"></script>
 		<script>
-			function find() {
-				location.href="unfinished.html";
-			}
+			new Vue({
+				el:"#back",
+				data:{
+					question:"",
+					id:""
+				},
+				methods : {
+					submit:function() {
+						var requestObj = GetRequest();
+						var companyId=requestObj['id'];
+						this.id = companyId;
+						var a = this.question;
+						this.$http.post('/questionFeedBack',
+								{
+									id:this.id,
+									question:a
+								},
+								{emulateJSON:true}).then(function(res){
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload();//刷新父页面
+							parent.layer.close(index); //成功再执行关闭
+						},function(res){
+							console.log(res.status);
+						});
+					},
+					find:function () {
+						var requestObj = GetRequest();
+						var companyId=requestObj['id'];
+						var id = companyId;
+						location.href="unfinished.html?id="+id;
+					}
+				}
+			});
 		</script>
 	</body>
 

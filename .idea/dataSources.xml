@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/auditsystem</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="j173sanzu@118.24.43.106" uuid="6114d3f4-48f7-49c4-96db-cdb9bd7af679">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://118.24.43.106:3306/j173sanzu</jdbc-url>
+    </data-source>
   </component>
 </project>

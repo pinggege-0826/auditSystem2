@@ -31,13 +31,26 @@ public class MQConfig {
         return  new Queue("getSalesPassFromCheckQueue");
     }
     /**
+     * 供应商审核发送消息队列
+     */
+    @Bean
+    public Queue auditResultQueue(){
+        return  new Queue("auditResultQueue");
+    }
+    /**
      * 绑定促销审核发送消息队列
      */
     @Bean
     public Binding bindingDirectExchange(Queue getSalesPassFromCheckQueue, DirectExchange createDirectExchange){
         return BindingBuilder.bind(getSalesPassFromCheckQueue).to(createDirectExchange).with("shuFu");
     }
-
+    /**
+     * 绑定供应商审核发送消息队列
+     */
+    @Bean
+    public Binding auditDirectExchange(Queue auditResultQueue, DirectExchange createDirectExchange){
+        return BindingBuilder.bind(auditResultQueue).to(createDirectExchange).with("auditResult");
+    }
 
 
     /**
