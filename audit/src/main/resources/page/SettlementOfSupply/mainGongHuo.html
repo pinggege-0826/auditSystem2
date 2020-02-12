@@ -5,13 +5,13 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>促销审核</title>
-		<link rel="stylesheet" type="text/css" href="../../static/layui/css/layui.css" />
-		<link rel="stylesheet" type="text/css" href="../../static/css/admin.css" />
+		<title>供货结算</title>
+		<link rel="stylesheet" type="text/css" href="../../layuiadmin/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../layuiadmin/style/admin.css" />
 		<script src="../../vue/jquery-2.1.4.js"></script>
 	</head>
 	<body>
-		<div class="page-content-wrap">
+		<div id="div" class="page-content-wrap">
 					<div class="layui-form" id="table-list">
 						<table class="layui-table" lay-skin="line">
 							<colgroup>
@@ -25,33 +25,34 @@
 							</colgroup>
 							<thead>
 								<tr>
-									<th width="200px">ID</th>
-									<th width="200px">商品名</th>
-									<th width="200px">单价</th>
-									<th width="200px">商品类型</th>
-									<th width="200px">状态</th>
+									<th width="200px">供应商</th>
+									<th width="200px">订单编号</th>
+									<th width="200px">总金额</th>
 									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr id='node-1' class="parent collapsed">
-									<td class="hidden-xs">1</td>
-									<td class="hidden-xs">香蕉</td>
-									<td class="hidden-xs">10000</td>
-									<td>水果</td>
-									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" value="未通过">未通过</button></td>
-									<td>
-										<div class="layui-inline">
-											<button class="layui-btn layui-btn-mini layui-btn-danger del-btn" data-id="1" onclick="del()"><i class="layui-icon">&#xe640;</i></button>
-										</div>
-									</td>
+								<tr v-for="s in info" id='node-1' class="parent collapsed">
+									<td class="hidden-xs">{{s.supplierName}}</td>
+									<td class="hidden-xs">{{s.orderNum}}</td>
+									<td class="hidden-xs">{{s.allMoney}}</td>
+									<td><button class="layui-btn layui-btn-mini layui-btn-normal table-list-status" onclick="find(this.value)" value="商品详情">商品详情</button></td>
 								</tr>
 							</tbody>
 						</table>
 						<div id="fenYe" style="text-align: center;"></div>
 					</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">订单状态</label>
+				<div class="layui-input-block">
+					<select id="t" onchange="change()">
+						<option value="0" selected="selected">未结算</option>
+						<option value="1">已结算</option>
+					</select>
+				</div>
+			</div>
 		</div>
-		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../static/js/common.js" type="text/javascript" charset="utf-8"></script>
 		<!--vue-->
 		<script src="../../vue/Vue.js"></script>
@@ -60,43 +61,109 @@
 		<!--获取URL的参数-->
 		<script  src="../../vue/paragram.js"></script>
 		<script>
-			/*分页的一些设置laYui*/
-			layui.use(['laypage', 'layer'], function(){
-				var laypage = layui.laypage
-						,layer = layui.layer;
-				laypage({
-					cont: 'fenYe'
-					/*最大页数；要动态生成*/
-					,pages: 10
-					,skip: true
+			//使用layui分页
+			var vue = new Vue({
+				el:"#div",
+				data:{
+					info:null
+				}
+			})
+
+
+			var pageIndex = 1;
+			var totalCount = 0;
+			var pageSize = 5;
+			var tag = $("#t option:selected").val();
+			pagination(pageIndex,pageSize,tag);
+			function pagination(pageIndex,pageSize,tag) {
+				//查询条件
+				var param = {
+					currPage: pageIndex,
+					tag:tag,
+					pageSize:pageSize
+					//其它查询条件可在下面添加
+				};
+				$.ajax({
+					type: 'POST',
+					url: '/showAllSupplyOrder',
+					dataType: 'json',
+					data: param,
+					async: false,//这里设置为同步执行，目的是等数据加载完再调用layui分页组件，不然分页组件拿不到totalCount的值
+					success: function (data) {
+						vue.info = data.list;
+						totalCount = data.totalPage;
+						//使用layui分页
+						layui.use('laypage', function (){
+							var laypage = layui.laypage;
+							laypage.render({
+								elem: 'fenYe'
+								, count: totalCount
+								, limit :5
+								, groups:5
+								, layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+								, jump: function (obj, first) {
+									//点击非第一页页码时的处理逻辑。比如这里调用了ajax方法，异步获取分页数据
+									if (!first) {
+										pagination1(obj.curr, obj.limit, $("#t option:selected").val());//第二个参数不能用变量pageSize，因为当切换每页大小的时候会出问题
+									}
+								}
+							});
+						});
+					}
 				});
-				var nums = 5; //每页出现的数据量
-			});
+			};
+
+			function change(){
+				pagination(pageIndex,pageSize,$("#t option:selected").val());
+			}
+
+			function pagination1(pageIndex,pageSize,tag) {
+				//查询条件
+				var param = {
+					currPage: pageIndex,
+					tag:tag,
+					pageSize:pageSize
+					//其它查询条件可在下面添加
+				};
+				$.ajax({
+					type: 'POST',
+					url: '/showAllSupplyOrder',
+					dataType: 'json',
+					data: param,
+					async: false,//这里设置为同步执行，目的是等数据加载完再调用layui分页组件，不然分页组件拿不到totalCount的值
+					success: function (data) {
+						vue.info = data.list;
+						totalCount = data.totalPage;
+					}
+				});
+			};
 			/*弹出页面，小窗口 不要管*/
-			function find(btn){
+			function find(btn,id){
 				var a="";
 				if(btn =='已通过'){
 					a="afternoon.html";
-				}else if(btn =='未通过' ){
-					a="unfinished.html";
+
+				}else if(btn =='商品详情',id ){
+					a="" + id;
+					var index =layer.open({
+						type: 2,
+						skin: 'a', //样式类名
+						title: '<div class="layui-layer-title" style="cursor: move;">商品详情</div>',
+						//closeBtn: 1, //不显示关闭按钮
+						//anim: 2,
+						area: setpage(),
+						//shadeClose: false, //开启遮罩关闭
+						//页面最大最小化，true可以最大最小化，false没有最大最小化
+						maxmin: true,
+						offset: ['2px','15px'],
+						/*要跳的页面*/
+						content: a
+					});
+					layer.full(index);
 				}else if(btn=='已审核'){
 					a="afternoon.html";
 				}
-				var index =layer.open({
-					type: 2,
-					skin: 'a', //样式类名
-					title: '<div class="layui-layer-title" style="cursor: move;">促销详情</div>',
-					//closeBtn: 1, //不显示关闭按钮
-					//anim: 2,
-					area: setpage(),
-					//shadeClose: false, //开启遮罩关闭
-					//页面最大最小化，true可以最大最小化，false没有最大最小化
-					maxmin: true,
-					offset: ['2px','15px'],
-					/*要跳的页面*/
-					content: a
-				});
-				layer.full(index);
+
 			}
 			//定义弹出的窗口根据不同屏幕分辨率来改变大小
 			function setpage() {

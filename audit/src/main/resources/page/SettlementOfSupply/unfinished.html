@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<style>
-			#weizhi{
+			#js{
 				position: relative;
-				left: 131px;
+				top: 400px;
+			}
+			#weizhi{
 				bottom: 54px;
-				width: 70px;
+
 			}
 			#fanhui{
 				position: relative;
@@ -25,61 +27,135 @@
 	</head>
 	<body>
 		<div class="wrap-container">
-			<form class="layui-form" style="width: 90%;padding-top: 20px;">
-					<div class="layui-form-item">
-						<label class="layui-form-label">商品编号：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="9527" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">商品名：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="舒服" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">单价：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="10000" autocomplete="off" class="layui-input">
-						</div>
-
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">规格：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="大大大" autocomplete="off" class="layui-input">
-						</div>
-
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">商品类型：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="水果" autocomplete="off" class="layui-input">
-						</div>
-
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">促销折扣：</label>
-						<div class="layui-input-block">
-							<input type="text" name="title" disabled="disabled" required lay-verify="required" placeholder="0.25" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<div class="layui-input-block">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">通过</button>
-							<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
-						</div>
-					</div>
-				</form>
-			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">不通过</button>
+			<div class="layui-form" id="table-list">
+				<table class="layui-table" lay-skin="line">
+					<colgroup>
+						<col width="50">
+						<col class="hidden-xs" width="50">
+						<col class="hidden-xs" width="100">
+						<col class="hidden-xs" width="100">
+						<col>
+						<col width="80">
+						<col width="130">
+					</colgroup>
+					<thead>
+					<tr>
+						<th width="200px">商品编号</th>
+						<th width="200px">商品类型</th>
+						<th width="200px">商品名称</th>
+						<th width="200px">商品规格</th>
+						<th width="200px">单价</th>
+						<th width="200px">数量</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr v-for="g in info" id='node-1' class="parent collapsed">
+						<td class="hidden-xs">{{g.goodsCode}}</td>
+						<td class="hidden-xs">{{g.typeForGoodsEntity.type}}</td>
+						<td class="hidden-xs">{{g.goodsName}}</td>
+						<td class="hidden-xs">{{g.toSupplyGoodsList.get(0).goodsSizeEntity.size}}</td>
+						<td class="hidden-xs">{{g.price}}</td>
+						<td class="hidden-xs">{{g.goodsNum}}</td>
+					</tr>
+					</tbody>
+				</table>
+				<div id="fenYe" style="text-align: center;"></div>
+			</div>
 		</div>
+		<div id="js" style="text-align: center">
+			<button onclick="f()" id="weizhi" class="layui-input-block layui-btn layui-btn-normal">结算</button>
+		</div>
+		<!--vue-->
+		<script src="../../vue/Vue.js"></script>
+		<!--使用ajax 需要导入-->
+		<script  src="../../vue/vue-resource.js"></script>
+		<script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../static/js/common.js" type="text/javascript" charset="utf-8"></script>
 
-		<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--获取URL的参数-->
+		<script  src="../../vue/paragram.js"></script>
 		<script>
-			function f() {
-				location.href="feedback.html";
+			function getQueryVariable(variable) {
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for (var i = 0; i < vars.length; i++) {
+					var pair = vars[i].split("=");
+					if (pair[0] == variable) {
+						return decodeURI(pair[1]);
+					}
+				}
+				return (false);
 			}
+			var ID = getQueryVariable("id");
+			//使用layui分页
+			var vue = new Vue({
+				el:"#div",
+				data:{
+					info:null
+				}
+			})
+			var pageIndex = 1;
+			var totalCount = 0;
+			var pageSize = 5;
+			pagination(pageIndex,pageSize,ID);
+			function pagination(pageIndex,pageSize,id) {
+				//查询条件
+				var param = {
+					currPage: pageIndex,
+					pageSize:pageSize,
+					id:id
+					//其它查询条件可在下面添加
+				};
+				$.ajax({
+					type: 'POST',
+					url: '/showAllSupplyGoods',
+					dataType: 'json',
+					data: param,
+					async: false,//这里设置为同步执行，目的是等数据加载完再调用layui分页组件，不然分页组件拿不到totalCount的值
+					success: function (data) {
+						vue.info = data.list;
+						totalCount = data.totalPage;
+						//使用layui分页
+						layui.use('laypage', function (){
+							var laypage = layui.laypage;
+							laypage.render({
+								elem: 'fenYe'
+								, count: totalCount
+								, limit :5
+								, groups:5
+								, layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+								, jump: function (obj, first) {
+									//点击非第一页页码时的处理逻辑。比如这里调用了ajax方法，异步获取分页数据
+									if (!first) {
+										pagination1(obj.curr, obj.limit,ID);//第二个参数不能用变量pageSize，因为当切换每页大小的时候会出问题
+									}
+								}
+							});
+						});
+					}
+				});
+			};
+			function pagination1(pageIndex,pageSize,id) {
+				//查询条件
+				var param = {
+					currPage: pageIndex,
+					pageSize:pageSize,
+					id:id
+					//其它查询条件可在下面添加
+				};
+				$.ajax({
+					type: 'POST',
+					url: '/showAllUserGoods',
+					dataType: 'json',
+					data: param,
+					async: false,//这里设置为同步执行，目的是等数据加载完再调用layui分页组件，不然分页组件拿不到totalCount的值
+					success: function (data) {
+						vue.info = data.list;
+						totalCount = data.totalPage;
+					}
+				});
+			};
 
 		</script>
 	</body>
