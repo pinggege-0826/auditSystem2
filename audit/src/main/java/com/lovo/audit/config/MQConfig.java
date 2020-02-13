@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
  * 发送消息队列
@@ -30,6 +31,7 @@ public class MQConfig {
     public Queue getSalesPassFromCheckQueue(){
         return  new Queue("getSalesPassFromCheckQueue");
     }
+
     /**
      * 供应商审核发送消息队列
      */
@@ -37,6 +39,23 @@ public class MQConfig {
     public Queue auditResultQueue(){
         return  new Queue("auditResultQueue");
     }
+
+    /**
+     * 采购单审核发送消息队列
+     */
+    @Bean
+    public Queue sendPurchaseMessageQueue(){
+        return new Queue("sendPurchaseMessageQueue");
+    }
+
+    /**
+     *绑定采购单审核发送消息队列
+     */
+    @Bean
+    public Binding purchaseDirectExchange(Queue sendPurchaseMessageQueue, DirectExchange createDirectExchange){
+        return BindingBuilder.bind(sendPurchaseMessageQueue).to(createDirectExchange).with("sendPurchase");
+    }
+
     /**
      * 绑定促销审核发送消息队列
      */
@@ -66,8 +85,8 @@ public class MQConfig {
 
 
     //websocket 放入到spring容器
-    /*@Bean
+    @Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
-    }*/
+    }
 }
