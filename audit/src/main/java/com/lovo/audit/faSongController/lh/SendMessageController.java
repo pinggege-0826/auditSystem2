@@ -39,4 +39,11 @@ public class SendMessageController {
         marketingService.getIdUpStatus(a,1);
         return "0";
     }
+
+    @RequestMapping("fasong")
+    public void test(String ab){
+
+        rabbitTemplate.convertAndSend("lovoSanZu","shuFu",ab);
+    }
+
 }
