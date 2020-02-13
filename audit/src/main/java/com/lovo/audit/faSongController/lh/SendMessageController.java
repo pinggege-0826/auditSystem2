@@ -27,10 +27,10 @@ public class SendMessageController {
         String productCode = byId.getProductCode();
         //商品编号+通过放入到队列中
         rabbitTemplate.convertAndSend("lovoSanZu","shuFu"
-                ,productCode+"通过");
+        ,productCode+"通过");
         marketingService.getIdUpStatus(a,2);
         return "0";
-    }
+}
 
     @RequestMapping("noTongGuo")
     public String noMessageById(String id,String neiRon){
