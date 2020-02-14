@@ -65,25 +65,16 @@
 		<script  src="../../vue/vue-resource.js"></script>
 		<!--获取URL的参数-->
 		<script  src="../../vue/paragram.js"></script>
-		<script>
+        <script src="../../vue/webSocketShuaXin.js"></script>
+        <script>
             //使用Vue渲染模板，初始化时是没有数据的，需要ajax请求拿到数据
             var vue = new Vue({
                 el: "#div",
                 data: {
                     info: null,
+                },created(){
+                    initTwo();
                 },
-                /*mounted(){
-                    if(this.timer){
-                        clearInterval(this.timer);
-                    }else{
-                        this.timer = setInterval(()=>{
-                            pagination(1, 8);
-                        },10000000);
-                    }
-                },
-                destroyed(){
-                    clearInterval(this.timer);
-                },*/
                 methods:{
                     del: function (id) {
                         layer.confirm('您确定删除吗？', {
@@ -108,6 +99,7 @@
                                 }
                             });
                         }
+
                     }
                 }
             });
