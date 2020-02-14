@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+    <script src="../vue/jquery-2.1.4.js"></script>
 </head>
 <body class="layui-layout-body">
 
@@ -38,8 +39,8 @@
               <i class="layui-icon layui-icon-component"></i>
               <cite>审核系统</cite>
             </a>
-            <dl class="layui-nav-child">
-              <dd data-name="button">
+            <dl class="layui-nav-child" lay-id="1">
+              <dd  data-name="button">
                 <dd data-name="stack"><a lay-href="CustomerAudit/mainKeHu.html">客户审核</a></dd>
               </dd>
               <dd data-name="button">
@@ -61,11 +62,11 @@
                   <dd data-name="speed-dial"><a lay-href="ReturnsManagement/mainTuiHuo.html">供应商退货</a></dd>
                 </dl>
               </dd>
-              <dd data-name="button">
-                <dd data-name="stack"><a lay-href="MarketingAudit/mainCuXiao.html">促销审核</a></dd>
+              <dd data-name="button" >
+                <dd data-name="stack"><a  lay-href="MarketingAudit/mainCuXiao.html">促销审核</a></dd>
               </dd>
-              <dd data-name="button">
-                  <dd data-name="stack"><a lay-href="PurchaseAudit/mainCaiGou.html">采购审核</a></dd>
+              <dd data-name="button" >
+                  <dd data-name="stack"><a  lay-href="PurchaseAudit/mainCaiGou.html">采购审核</a></dd>
               </dd>
               <dd data-name="button">
                   <dd data-name="stack"><a lay-href="OfferToReview/mainBaoJia.html">报价审核</a></dd>
@@ -106,13 +107,14 @@
         <iframe src="welcome.html" frameborder="0" class="layadmin-iframe"></iframe>
       </div>
     </div>
-
     <!-- 辅助元素，一般用于移动设备下遮罩 -->
     <div class="layadmin-body-shade" layadmin-event="shade"></div>
   </div>
 </div>
-
+<script src="../vue/Vue.js"></script>
 <script src="../layuiadmin/layui/layui.js"></script>
+
+<script src="../vue/tangChuKuang.js"></script>
 <script>
   layui.config({
     base: '../layuiadmin/' //静态资源所在路径
