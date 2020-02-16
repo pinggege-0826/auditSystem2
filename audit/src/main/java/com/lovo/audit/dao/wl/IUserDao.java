@@ -1,32 +1,31 @@
-package com.lovo.audit.service.wl;
+package com.lovo.audit.dao.wl;
 
+import com.lovo.audit.entity.cpy.CompanyEntity;
 import com.lovo.audit.entity.wl.UserEntity;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
 /**
- * 用户业务层接口
+ * 用户持久层接口
  */
-public interface IUserService {
+public interface IUserDao extends CrudRepository<UserEntity,Integer> {
 
     /**
-     * 添加用户
-     * @param userEntity 用户对象
+     * 查询所有用户
+     * @return 用户集合
      */
-    public void addUser(UserEntity userEntity);
-    /**
-     * 查询所有供应商并分页展示
-     * @param currPage  当前页
-     * @param pageSize  每页显示条数
-     * @return          分好页的用户集合
-     */
-    public List<UserEntity> findAllUser(int currPage, int pageSize);
+    @Query("from UserEntity ")
+    public List<UserEntity> findAllUser(Pageable pageable);
 
     /**
      * 根据用户Id查询详情
      * @param id  用户ID
      * @return    用户对象
      */
+    @Query("from UserEntity where id = ?1")
     public UserEntity findUserById(Integer id);
 
     /**
@@ -34,7 +33,9 @@ public interface IUserService {
      * @param id       用户Id
      * @param userState   用户状态  （0为正常，1为冻结）
      */
+    @Query("update UserEntity set userState = ?1 where id = ?2")
     public void updateStatusById(int userState,Integer id);
+
     /**
      * 根据用户Id修改用户的状态
      * @param id       用户Id
