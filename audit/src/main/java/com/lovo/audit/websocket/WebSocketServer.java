@@ -2,7 +2,11 @@ package com.lovo.audit.websocket;
 
 
 import com.lovo.audit.entity.cpy.CompanyEntity;
+import com.lovo.audit.entity.lh.MarketingEntity;
+import com.lovo.audit.entity.lxj.SpecificationEntity;
 import com.lovo.audit.service.cpy.ICompanyService;
+import com.lovo.audit.service.lh.IMarketingService;
+import com.lovo.audit.service.lh.ISpecificationService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,14 @@ public class WebSocketServer {
 
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
+    //促销审核保存信息
+    @Autowired
+    private IMarketingService marketingService;
+    @Autowired
+    private ISpecificationService specificationService;
 
+    //sb不当我写又要重写
+    @Autowired
     private ICompanyService companyService;
 
     /**
@@ -67,7 +78,13 @@ public class WebSocketServer {
 
     @RabbitListener(queues = "getSalesPassFromCheckQueue")
     public  void getMessage(String message) throws IOException {
+        //保存在队列中的信息到数据库
         System.out.println(message);
+        ObjectMapper om = new ObjectMapper();
+        MarketingEntity ma = om.readValue(message,MarketingEntity.class);
+        SpecificationEntity spe = new SpecificationEntity();
+        marketingService.saveMarket(ma);
+        specificationService.saveSpecification(spe);
         if (sessions.size() != 0) {
             for (WebSocketServer s : sessions) {
                 if (s != null) {
