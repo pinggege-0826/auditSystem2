@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 用户冻结业务层接口实体类
  */
-@Service(value = "userFreezeService")
+@Service(value = "userGradeService")
 @Transactional
 public class UserGradeServiceImpl implements IUserGradeService {
 
