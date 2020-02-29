@@ -76,7 +76,7 @@ public class WebSocketServer {
         this.session.getBasicRemote().sendText(message);
     }
 
-    @RabbitListener(queues = "getSalesPassFromCheckQueue")
+    //@RabbitListener(queues = "getStoreMessageQueue")
     public  void getMessage(String message) throws IOException {
         //保存在队列中的信息到数据库
         System.out.println(message);
@@ -103,6 +103,37 @@ public class WebSocketServer {
             for (WebSocketServer s : sessions) {
                 if (s != null) {
                     s.session.getBasicRemote().sendText("cuXiao");
+                }
+            }
+        }
+    }
+
+    /**
+     * 用户注册消息监听
+     */
+    //@RabbitListener(queues = "userQueue");
+    public void userMessage(String message) throws IOException {
+        ObjectMapper om = new ObjectMapper();
+
+        if (sessions.size() != 0) {
+            for (WebSocketServer s : sessions) {
+                if (s != null) {
+                    s.session.getBasicRemote().sendText("userZc");
+                }
+            }
+        }
+    }
+    /**
+     * 用户冻结消息监听
+     */
+    //@RabbitListener(queues = "userFreezeQueue");
+    public void userDjMessage(String message) throws IOException {
+        ObjectMapper om = new ObjectMapper();
+
+        if (sessions.size() != 0) {
+            for (WebSocketServer s : sessions) {
+                if (s != null) {
+                    s.session.getBasicRemote().sendText("userDj");
                 }
             }
         }

@@ -43,10 +43,7 @@ public class UserServiceImpl implements IUserService {
         userDao.updateStatusById(userState,id);
     }
 
-    @Override
-    public void updateStatus(Integer id) {
-        userDao.updateStatus(id);
-    }
+
 
     @Override
     public int countAllBy() {

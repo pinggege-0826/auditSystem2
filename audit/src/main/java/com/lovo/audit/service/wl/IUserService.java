@@ -35,11 +35,7 @@ public interface IUserService {
      * @param userState   用户状态  （0为正常，1为冻结）
      */
     public void updateStatusById(int userState,Integer id);
-    /**
-     * 根据用户Id修改用户的状态
-     * @param id       用户Id
-     */
-    public void updateStatus(Integer id);
+
 
     /**
      * 统计总页数
